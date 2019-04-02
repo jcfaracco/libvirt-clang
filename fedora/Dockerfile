@@ -14,3 +14,10 @@ RUN dnf install -y libiscsi glusterfs
 RUN dnf install -y gettext-devel xfsprogs-devel systemtap-sdt-devel fuse-devel libiscsi-devel glusterfs-devel glusterfs-api-devel libacl-devel dbus-devel yajl-devel libiscsi-devel libpcap-devel libiscsi-devel libpcap-devel libcap-ng-devel cyrus-sasl-devel lvm2-devel sanlock-devel avahi-devel sheepdog-devel nss-devel audit-libs-devel libattr-devel netcf-devel numactl-devel librbd-devel readline-devel libblkid-devel device-mapper-devel libpciaccess-devel libssh2-devel libudev-devel libtirpc-devel libwsman-devel libssh-devel libxml2-devel libnl3-devel gnutls-devel libxslt
 
 RUN git clone https://libvirt.org/git/libvirt.git
+
+# Change work directory to "libvirt"
+WORKDIR /libvirt
+
+# Build steps
+RUN ./autogen.sh
+RUN ./configure --prefix=/usr/ CC=clang
